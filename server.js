@@ -33,7 +33,7 @@ db.sequelize.sync({ force: true })
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to trade-app application." });
 });
-
+require("./app/routers/goodsgroup.routers.js")(app);
 // использование process.env для установки порта
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
 module.exports = app => {
-    
-    const goodsGroup = require("../controllers/goodsdroup.controller.js");
+
+    const goodsGroup = require("../controllers/goodsgroup.controller.js")
 
     var router = require("express").Router();
 
