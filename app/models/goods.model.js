@@ -1,15 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
-    const GoodsGroup = sequelize.define("goodsgroup", {
+    const Goods = sequelize.define("goods", {
         name: {
             type: Sequelize.STRING
         },
         description: {
             type: Sequelize.STRING
         },
-        baseGoodsGroup: {
+        goodsGroup: {
             type: Sequelize.INTEGER
         }
     });
 
-    return GoodsGroup;
+    return Goods;
 };

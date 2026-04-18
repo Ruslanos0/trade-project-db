@@ -18,12 +18,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.goods = require("./goods.model.js")(sequelize, Sequelize);
 db.goodsGroup = require("./goods-group.model.js")(sequelize, Sequelize);
+db.goods = require("./goods.model.js")(sequelize, Sequelize);
 db.pricelist = require("./pricelist.model.js")(sequelize, Sequelize);
 db.pricelistGoods = require("./pricelistgoods.model.js")(sequelize, Sequelize);
 db.purchase = require("./purchase.model.js")(sequelize, Sequelize);
 db.purchaseGoods = require("./purchasegoods.model.js")(sequelize, Sequelize);
+
 
 require('./references.model.js')(db);
 
