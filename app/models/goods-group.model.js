@@ -1,17 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
-    const GoodsGroup = sequelize.define("goodsgroup", {
+    const Goods = sequelize.define("goods", {
+        code: {
+            type: Sequelize.STRING
+        },
         name: {
             type: Sequelize.STRING
         },
         description: {
             type: Sequelize.STRING
         },
-        baseGoodsGroup: {
+        articul: {
+            type: Sequelize.INTEGER
+        },
+        goodsgroup: {
             type: Sequelize.INTEGER
         }
     });
 
-    GoodsGroup.belongsTo(GoodsGroup, { foreignKey: 'baseGoodsGroup' });
+    Goods.belongsTo(GoodsGroup, { foreignKey: 'goodsGroup' });
 
-    return GoodsGroup;
+    return Goods;
 };
