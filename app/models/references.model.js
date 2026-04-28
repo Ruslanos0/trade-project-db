@@ -1,19 +1,39 @@
 module.exports = (db) => {
-    // GoodsGroup references
-    db.goodsGroup.belongsTo(db.goodsGroup, { foreignKey: 'baseGoodsGroup', as: 'parentGroup' });
+    // Связи для Групп Книг (Жанров)
+    db.booksgroups.belongsTo(db.booksgroups, { 
+        foreignKey: 'base_books_group', 
+        as: 'parentGroup' 
+    });
 
-    // Goods references
-    db.goods.belongsTo(db.goodsGroup, { foreignKey: 'goodsGroup', as: 'group' });
+    db.books.belongsTo(db.booksgroups, { 
+        foreignKey: 'books_group', 
+        as: 'group' 
+    });
 
-    // pricelistgoods
-    // МЕНЯЕМ ТУТ: добавляем 'as', чтобы не было конфликта с полем 'pricelist'
-    db.pricelistGoods.belongsTo(db.pricelist, { foreignKey: 'pricelist', as: 'relatedPricelist' });
-    db.pricelistGoods.belongsTo(db.goods, { foreignKey: 'goods', as: 'relatedGoods' });
+    // Связи для Прайс-листа
+    db.pricelistBooks.belongsTo(db.pricelist, { 
+        foreignKey: 'pricelist_id', 
+        as: 'relatedPricelist' 
+    });
+    
+    db.pricelistBooks.belongsTo(db.books, { 
+        foreignKey: 'book_id', 
+        as: 'relatedBooks' 
+    });
 
-    // purchase 
-    db.purchase.belongsTo(db.pricelist, { foreignKey: 'priceList', as: 'targetPricelist' });
+    // Связи для Заказов
+    db.orders.belongsTo(db.pricelist, { 
+        foreignKey: 'pricelist_id', 
+        as: 'targetPricelist' 
+    });
 
-    // purchasegoods
-    db.purchaseGoods.belongsTo(db.purchase, { foreignKey: 'purchaseId', as: 'parentPurchase' });
-    db.purchaseGoods.belongsTo(db.goods, { foreignKey: 'goods', as: 'item' });
+    db.orderItems.belongsTo(db.orders, { 
+        foreignKey: 'order_id',
+        as: 'parentOrder' 
+    });
+    
+    db.orderItems.belongsTo(db.books, { 
+        foreignKey: 'book_id', 
+        as: 'item' 
+    });
 };
