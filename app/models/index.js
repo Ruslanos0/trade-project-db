@@ -28,6 +28,7 @@ db.pricelistBooks = require("./pricelistbooks.model.js")(sequelize, Sequelize);
 db.orders = require("./purchase.model.js")(sequelize, Sequelize);
 db.orderItems = require("./purchasebooks.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.userBooks = require("./user-books.model.js")(sequelize, Sequelize);
 
 // Подключение связей
 require('./references.model.js')(db);

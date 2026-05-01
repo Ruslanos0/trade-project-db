@@ -30,6 +30,7 @@ require("./app/routers/pricelistbooks.routers.js")(app);
 require("./app/routers/purchase.routers")(app);
 require("./app/routers/purchasebooks.routers.js")(app);
 require("./app/routers/user.routers")(app);
+require("./app/routers/user-books.routers.js")(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

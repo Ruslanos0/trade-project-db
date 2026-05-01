@@ -36,4 +36,30 @@ module.exports = (db) => {
         foreignKey: 'book_id', 
         as: 'item' 
     });
+
+    // Связи для пользователей и книг (многие ко многим)
+    db.users.belongsToMany(db.books, {
+        through: db.userBooks,
+        foreignKey: 'user_id',
+        otherKey: 'book_id',
+        as: 'userBooks'
+    });
+
+    db.books.belongsToMany(db.users, {
+        through: db.userBooks,
+        foreignKey: 'book_id',
+        otherKey: 'user_id',
+        as: 'bookUsers'
+    });
+
+    // Прямые связи для промежуточной таблицы
+    db.userBooks.belongsTo(db.users, {
+        foreignKey: 'user_id',
+        as: 'user'
+    });
+
+    db.userBooks.belongsTo(db.books, {
+        foreignKey: 'book_id',
+        as: 'book'
+    });
 };
